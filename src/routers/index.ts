@@ -1,19 +1,46 @@
-import { createWebHistory, createRouter } from 'vue-router'
+import { createWebHistory, createRouter, NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
+import { getCookie } from "@/utils/cookieUtils";
 
 
-import Home from "@/layout/Home.vue"
 
 const router = createRouter({
   history: createWebHistory(),
 
   routes: [
-    { path: '/', component: Home, name: 'Home' }
+    { path: '/login', component: () => import('@/page/Login.vue'), name: 'Login' },
+
+    {
+      path: '/',
+      component: () => import('@/layout/commonLayout.vue'),
+      name: 'commonLayout',
+      children: [
+        // {
+        //   path: "",
+        //   name: "",
+        //   component: import('')
+        // },
+      ]
+    }
+
+
+
+
 
   ],
 
   // scrollBehavior(to, from, savedPosition) {
   //   return { top : 0, behavior: 'smooth' }
   // },
+})
+
+router.beforeEach((to, from, next) => {
+
+  if (!["/login"].includes(to.path) && !getCookie("token")) {
+    next("/login")
+    return
+  }
+
+  next();
 })
 
 export default router

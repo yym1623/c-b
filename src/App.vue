@@ -8,5 +8,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+* {
+  height: 100dvh;
+}
 </style>

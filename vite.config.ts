@@ -7,6 +7,9 @@ import { fileURLToPath, URL } from 'node:url';
 // import fs from "fs";
 import eslintPlugin from 'vite-plugin-eslint';
 
+import vuetify from 'vite-plugin-vuetify'
+
+
 // SSL 인증서 적용
 // const https = {
 //   key: fs.readFileSync("./ssl/star_etaas_co_kr_NginX_nopass_key.pem"),
@@ -17,6 +20,7 @@ import eslintPlugin from 'vite-plugin-eslint';
 export default defineConfig({
   plugins: [
     vue(),
+    vuetify({ autoImport: true }),
     eslintPlugin(),
     Components(),
     AutoImport({
