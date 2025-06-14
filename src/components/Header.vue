@@ -1,7 +1,12 @@
 <template>
   <div>
-    <!--  <v-btn @click="toggleTheme()">전환</v-btn>-->
+    <v-toolbar title="Toolbar" density="comfortable" >
 
+      <v-switch
+        v-model="isDark"
+        @change="toggleTheme"
+      />
+    </v-toolbar>
   </div>
 </template>
 
@@ -9,6 +14,8 @@
 import { useTheme } from 'vuetify'
 
 const theme = useTheme()
+
+const isDark = ref<string>("dark");
 
 function toggleTheme () {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'

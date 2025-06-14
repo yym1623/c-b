@@ -7,25 +7,20 @@ const router = createRouter({
   history: createWebHistory(),
 
   routes: [
-    { path: '/login', component: () => import('@/page/Login.vue'), name: 'Login' },
+    // { path: '/login', component: () => import('@/page/Login.vue'), name: 'Login' },
 
     {
       path: '/',
-      component: () => import('@/layout/commonLayout.vue'),
+      component: () => import('@/layout/CommonLayout.vue'),
       name: 'commonLayout',
       children: [
-        // {
-        //   path: "",
-        //   name: "",
-        //   component: import('')
-        // },
+        {
+          path: "",
+          name: "Dashboard",
+          component: import('@/page/Dashboard.vue')
+        },
       ]
     }
-
-
-
-
-
   ],
 
   // scrollBehavior(to, from, savedPosition) {
@@ -35,10 +30,10 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
 
-  if (!["/login"].includes(to.path) && !getCookie("token")) {
-    next("/login")
-    return
-  }
+  // if (!["/login"].includes(to.path) && !getCookie("token")) {
+  //   next("/login")
+  //   return
+  // }
 
   next();
 })
